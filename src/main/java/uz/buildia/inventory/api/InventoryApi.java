@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class InventoryApi {
 
     @GetMapping("/dummy")
-    public String getDummyData(@RequestParam String scannedId, @RequestParam String data) {
-        return String.format("%s %s", scannedId, data);
+    public String getDummyData(@RequestParam String scannerId, @RequestParam String data) {
+        System.out.println("Nodir is here");
+        return String.format("%s %s", scannerId, data);
     }
 }
