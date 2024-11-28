@@ -52,7 +52,12 @@ public class PassportStageHistoryServiceImpl implements PassportStageHistoryServ
       log.warn("No PassportStageHistory found for QR ID: {}", qrId);
       return true;
     }
-    return history.getStage() == null;
+    var stage = history.getStage();
+    if (stage == null) {
+      log.warn("Stage is null for PassportStageHistory with QR ID: {}", qrId);
+      return true;
+    }
+    return stage.getNextStage() == null;
   }
 
   private PassportStageHistory getCurrentHistory(String qrId) {
