@@ -46,8 +46,13 @@ public class PassportStageHistoryServiceImpl implements PassportStageHistoryServ
   }
 
   @Override
-  public Boolean isClosePassport(String qrId) {
-    return Objects.isNull(getCurrentHistory(qrId).getStage().getNextStage());
+  public boolean isClosePassport(String qrId) {
+    PassportStageHistory history = getCurrentHistory(qrId);
+    if (history == null) {
+      log.warn("No PassportStageHistory found for QR ID: {}", qrId);
+      return true;
+    }
+    return history.getStage() == null;
   }
 
   private PassportStageHistory getCurrentHistory(String qrId) {

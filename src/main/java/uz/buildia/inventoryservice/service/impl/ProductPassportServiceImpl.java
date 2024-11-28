@@ -28,8 +28,8 @@ public class ProductPassportServiceImpl implements ProductPassportService {
   @Override
   public ProductPassportDto report(ReportRequest reportRequest, String scannerId) {
     ProductPassport productPassport;
-    if (Boolean.TRUE.equals(isPassportOpen(reportRequest.qrId()))) {
-      if (Boolean.TRUE.equals(passportStageHistoryService.isClosePassport(reportRequest.qrId()))) {
+    if (isPassportOpen(reportRequest.qrId())) {
+      if (passportStageHistoryService.isClosePassport(reportRequest.qrId())) {
         productPassport = closePassport(reportRequest, scannerId);
       } else {
         productPassport = updatePassport(reportRequest, scannerId);
@@ -96,10 +96,10 @@ public class ProductPassportServiceImpl implements ProductPassportService {
               productPassport.setUpdatedAt(LocalDateTime.now());
               return productPassportRepository.save(productPassport);
             })
-        .orElseThrow(() -> new RuntimeException());
+        .orElseThrow(() -> new RuntimeException("Product passport not found"));
   }
 
-  private Boolean isPassportOpen(String qrId) {
+  private boolean isPassportOpen(String qrId) {
     return productPassportRepository.existsByQrIdAndPassportStatus(qrId, PassportStatus.OPEN);
   }
 }

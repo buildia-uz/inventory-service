@@ -7,5 +7,5 @@ public interface PassportStageHistoryService {
 
     PassportStageHistoryDto save(PassportHistorySetRequest passportHistorySetRequest);
 
-    Boolean isClosePassport(String qrId);
+    boolean isClosePassport(String qrId);
 }

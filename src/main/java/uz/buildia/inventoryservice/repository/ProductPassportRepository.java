@@ -7,5 +7,5 @@ import uz.buildia.inventoryservice.entity.ProductPassport;
 
 @Repository
 public interface ProductPassportRepository extends JpaRepository<ProductPassport, String> {
-	Boolean existsByQrIdAndPassportStatus(String qrId, PassportStatus passportStatus);
+	boolean existsByQrIdAndPassportStatus(String qrId, PassportStatus passportStatus);
 }
