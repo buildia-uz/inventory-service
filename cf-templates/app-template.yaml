@@ -55,8 +55,8 @@ Resources:
           aws s3 cp ${S3AppUri} .
           
           DB_URL="jdbc:postgresql://$(aws cloudformation list-exports --query "Exports[?Name=='db-stack-RDSInstanceEndpoint'].Value" --output text):5432/$(aws cloudformation list-exports --query "Exports[?Name=='db-stack-DBName'].Value" --output text)"
-          DB_USERNAME=${DB_USERNAME}
-          DB_PASSWORD=${DB_PASSWORD}
+          DB_USERNAME=${DBUsername}
+          DB_PASSWORD=${DBPassword}
           
           echo "export DB_URL=$DB_URL" | sudo tee -a /etc/profile
           echo "export DB_USERNAME=$DB_USERNAME" | sudo tee -a /etc/profile
