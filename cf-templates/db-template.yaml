@@ -16,6 +16,7 @@ Parameters:
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
   DBUsername:
     Type: String
+    NoEcho: true
     Description: The database admin account username.
     MinLength: 1
     MaxLength: 16
@@ -23,6 +24,7 @@ Parameters:
     ConstraintDescription: must begin with a letter and contain only alphanumeric characters.
   DBPassword:
     Type: String
+    NoEcho: true
     Description: The database admin account password.
   DBInstanceClass:
     Default: db.t3.small
